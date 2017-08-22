@@ -21,16 +21,21 @@ class User
 
     /**
      * 用户登陆操作
+     * @param $user_name
+     * @param $password
+     * @return string
      */
-    public function login()
+    public function login($user_name, $password)
     {
+        App::log()->file_log([$user_name, $password]);
         return '准备登陆啦';
     }
 
-    public function loginOut()
+    /**
+     * 注册操作
+     */
+    public function register()
     {
         
     }
-
-
 }

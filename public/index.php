@@ -31,7 +31,9 @@ if (empty($action_arr[0]) || empty($action_arr[1])) return App::response()->json
 
 // 调用类指定的方法
 if (is_callable([$action_arr[0], $action_arr[1]])) {
-    $ret = call_user_func_array([$action_arr[0], $action_arr[1]], $_POST);
+    $args = $_POST;
+    array_shift($args);
+    $ret = call_user_func_array([$action_arr[0], $action_arr[1]], array_values($args));
     return App::response()->json($ret);
 } else {
     return App::response()->json([], 'action对应接口不存在', -1);
